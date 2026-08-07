@@ -1,24 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Wrath of the Druids — Case study by David Pellet." />
-<title>Wrath of the Druids — Case Study | David Pellet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Assassin's Creed Valhalla: Wrath of the Druids — Art Direction case study by David Pellet.">
+<title>Wrath of the Druids — Art Direction | David Pellet</title>
 <style>
-:root{--bg:#0d0d0c;--text:#f1eee7;--muted:#b3aea4;--line:rgba(241,238,231,.16);--accent:#bca06e;--max:1380px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;color:var(--text);background:var(--bg);font-family:Inter,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.shell{width:min(calc(100% - 48px),var(--max));margin:0 auto}.topbar{position:sticky;top:0;z-index:30;background:rgba(13,13,12,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}.topbar-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.backlink,.ghost-button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.brand{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.hero{padding:64px 0 44px}.eyebrow{margin:0 0 16px;color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.hero h1{margin:0;max-width:980px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(56px,8vw,120px);font-weight:400;line-height:.88;letter-spacing:-.05em}.hero-summary{max-width:900px;margin:24px 0 0;color:#c2bdb4;font-size:19px;line-height:1.68}.hero-image{position:relative;margin-top:42px;min-height:560px;border:1px solid var(--line);overflow:hidden;background:radial-gradient(circle at 70% 18%,rgba(188,160,110,.22),transparent 18%),linear-gradient(145deg,#212019 0%,#100f0d 55%,#090807 100%)}.hero-image:before{content:"";position:absolute;inset:8% 14% auto auto;width:42%;height:74%;border:1px solid rgba(241,238,231,.10);transform:rotate(-7deg);background:linear-gradient(160deg,rgba(255,255,255,.05),transparent)}.asset-label{position:absolute;left:26px;bottom:24px;max-width:340px;color:#d0c9bd;font-size:12px;line-height:1.45;letter-spacing:.04em;text-transform:uppercase}.meta-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:26px;border-top:1px solid var(--line);border-left:1px solid var(--line)}.meta-card{min-height:142px;padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.meta-card span{display:block;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.meta-card strong{display:block;margin-top:16px;font-size:18px;line-height:1.35;font-weight:600}.section{padding:112px 0;border-top:1px solid var(--line)}.section-grid{display:grid;grid-template-columns:.64fr 1.36fr;gap:54px;align-items:start}.section-title{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,4.8vw,66px);font-weight:400;line-height:.98;letter-spacing:-.03em}.section-copy p,.section-copy li{color:var(--muted);font-size:17px;line-height:1.78}.section-copy p:first-child{margin-top:0}.section-copy ul{margin:16px 0 0 20px;padding:0}.note{margin-top:22px;padding:18px 20px;border-left:2px solid var(--accent);background:rgba(188,160,110,.06);color:#d8d2c8;font-size:15px;line-height:1.7}.thesis-grid,.decision-grid,.asset-grid{display:grid;gap:18px}.thesis-grid{grid-template-columns:repeat(3,1fr)}.thesis-card,.decision-card,.asset-card{padding:24px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01))}.thesis-card h3,.decision-card h3,.asset-card h3{margin:0 0 14px;font-size:16px;letter-spacing:.04em;text-transform:uppercase}.thesis-card p,.decision-card p,.asset-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.72}.decision-grid{grid-template-columns:1fr 1fr}.image-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.image-slot{position:relative;min-height:320px;border:1px solid var(--line);background:linear-gradient(145deg,#1f1f1a,#0d0d0c);overflow:hidden}.image-slot.tall{min-height:420px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}.flow-step{padding:22px;border:1px solid var(--line);background:rgba(255,255,255,.01)}.flow-step .num{color:var(--accent);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.flow-step h3{margin:20px 0 12px;font-size:18px;font-weight:600}.flow-step p{margin:0;color:var(--muted);font-size:15px;line-height:1.68}.next-actions{padding:28px;border:1px solid var(--line);background:rgba(188,160,110,.05)}.next-actions h3{margin:0 0 14px;font-size:18px;text-transform:uppercase;letter-spacing:.05em}.next-actions ol{margin:0 0 0 22px;padding:0}.next-actions li{color:var(--muted);font-size:16px;line-height:1.75;margin-bottom:8px}footer{padding:50px 0 70px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}@media (max-width:1100px){.meta-grid{grid-template-columns:1fr 1fr}.section-grid,.thesis-grid,.decision-grid,.image-row,.flow{grid-template-columns:1fr}}@media (max-width:640px){.shell{width:min(calc(100% - 28px),var(--max))}.topbar-inner{min-height:64px}.hero{padding:34px 0 34px}.hero-image{min-height:360px}.meta-grid{grid-template-columns:1fr}.section{padding:82px 0}}
+:root{
+  --bg:#0b0c0b;
+  --surface:#121411;
+  --surface2:#171a16;
+  --text:#f2efe8;
+  --muted:#b5b0a7;
+  --line:rgba(242,239,232,.15);
+  --accent:#9fbf8c;
+  --gold:#c4a56f;
+  --max:1420px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%}
+.shell{width:min(calc(100% - 48px),var(--max));margin:0 auto}
+.eyebrow{
+  margin:0 0 16px;color:var(--accent);font-size:11px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase
+}
+.topbar{
+  position:sticky;top:0;z-index:50;background:rgba(11,12,11,.9);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)
+}
+.topbar-inner{
+  min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px
+}
+.button{
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;
+  padding:0 16px;border:1px solid var(--line);border-radius:999px;
+  font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase
+}
+.button.primary{background:var(--text);color:#11120f;border-color:var(--text)}
+.brand{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.hero{padding:68px 0 48px}
+.hero h1{
+  margin:0;max-width:1080px;font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(58px,8vw,122px);font-weight:400;line-height:.87;letter-spacing:-.052em
+}
+.hero-lead{
+  max-width:960px;margin:28px 0 0;color:#cbc6bc;font-size:20px;line-height:1.7
+}
+.hero-image{
+  position:relative;margin-top:44px;min-height:650px;border:1px solid var(--line);
+  background:
+    linear-gradient(to top,rgba(4,5,4,.82),rgba(4,5,4,.08) 48%,rgba(4,5,4,.05)),
+    url("assets/wrath/connacht-lackanscaul.jpg") center/cover no-repeat,
+    linear-gradient(145deg,#263126,#0c100c);
+  overflow:hidden
+}
+.hero-caption{
+  position:absolute;left:28px;right:28px;bottom:26px;display:flex;
+  justify-content:space-between;gap:24px;align-items:end
+}
+.hero-caption strong{max-width:740px;font-family:Georgia,"Times New Roman",serif;font-size:30px;font-weight:400}
+.hero-caption span{max-width:360px;color:#d6d0c5;font-size:12px;line-height:1.5;text-align:right}
+.meta-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);
+  border-left:1px solid var(--line);margin-top:24px
+}
+.meta{
+  min-height:145px;padding:24px;border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line)
+}
+.meta span{display:block;color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.meta strong{display:block;margin-top:16px;font-size:17px;line-height:1.4}
+.section{padding:118px 0;border-top:1px solid var(--line)}
+.section-grid{display:grid;grid-template-columns:.62fr 1.38fr;gap:58px;align-items:start}
+.section h2{
+  margin:0;font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(42px,5vw,72px);font-weight:400;line-height:.97;letter-spacing:-.035em
+}
+.copy p,.copy li{color:var(--muted);font-size:17px;line-height:1.8}
+.copy p:first-child{margin-top:0}
+.copy ul{margin:18px 0 0 20px;padding:0}
+.callout{
+  margin-top:24px;padding:22px 24px;border-left:2px solid var(--accent);
+  background:rgba(159,191,140,.055);color:#d9d4ca;font-size:15px;line-height:1.75
+}
+.confidential{
+  display:grid;grid-template-columns:auto 1fr;gap:18px;margin-top:26px;
+  padding:22px;border:1px solid var(--line);background:rgba(255,255,255,.018)
+}
+.confidential b{color:var(--gold);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.confidential p{margin:0;color:var(--muted);font-size:14px;line-height:1.68}
+.scope-grid,.method-grid,.docs-grid,.team-grid,.gallery-grid,.marketing-grid{
+  display:grid;gap:18px
+}
+.scope-grid{grid-template-columns:repeat(3,1fr);margin-top:30px}
+.card{
+  padding:26px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.023),rgba(255,255,255,.008))
+}
+.card .num{color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.card h3{margin:34px 0 14px;font-size:20px;font-weight:650}
+.card p{margin:0;color:var(--muted);font-size:15px;line-height:1.72}
+.method-grid{grid-template-columns:repeat(3,1fr);margin-top:34px}
+.method-card{min-height:310px}
+.docs-grid{grid-template-columns:1fr 1fr;margin-top:30px}
+.doc-card h3{margin:0 0 12px;font-size:16px;text-transform:uppercase;letter-spacing:.06em}
+.doc-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.74}
+.team-grid{grid-template-columns:1fr 1fr;margin-top:28px}
+.team-block{
+  padding:28px;border:1px solid var(--line);background:var(--surface)
+}
+.team-block h3{
+  margin:0 0 22px;color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase
+}
+.role-row{
+  display:grid;grid-template-columns:150px 1fr;gap:24px;padding:16px 0;border-top:1px solid var(--line)
+}
+.role-row:first-of-type{border-top:0;padding-top:0}
+.role-row b{font-size:13px}
+.role-row span{color:var(--muted);font-size:14px;line-height:1.65}
+.gallery-grid{grid-template-columns:1.3fr .7fr;margin-top:30px}
+.image-card{
+  position:relative;min-height:430px;border:1px solid var(--line);overflow:hidden;background:#10120f
+}
+.image-card img{height:100%;object-fit:cover}
+.image-card.small{min-height:205px}
+.image-stack{display:grid;gap:18px}
+.image-label{
+  position:absolute;left:18px;bottom:16px;padding:8px 10px;background:rgba(7,8,7,.76);
+  color:#eee8de;font-size:10px;letter-spacing:.1em;text-transform:uppercase
+}
+.marketing-main{
+  border:1px solid var(--line);background:#10110f;overflow:hidden
+}
+.marketing-main img{aspect-ratio:16/9;object-fit:cover}
+.marketing-grid{grid-template-columns:1fr 1fr;margin-top:18px}
+.marketing-grid figure{margin:0;border:1px solid var(--line);background:#10110f}
+.marketing-grid figure:first-child img{aspect-ratio:1/1;object-fit:cover}
+.marketing-grid figure:last-child img{aspect-ratio:2/3;object-fit:cover;object-position:center top}
+figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
+.marketing-principles{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px
+}
+.marketing-principles div{
+  padding:20px;border:1px solid var(--line);background:rgba(255,255,255,.015)
+}
+.marketing-principles b{
+  display:block;color:var(--accent);font-size:10px;letter-spacing:.14em;text-transform:uppercase
+}
+.marketing-principles span{display:block;margin-top:12px;color:var(--muted);font-size:14px;line-height:1.6}
+.credits{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:30px
+}
+.credit{
+  padding:22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.credit h3{margin:0 0 10px;color:var(--accent);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.credit p{margin:0;color:var(--text);font-size:14px;line-height:1.7}
+.footer{padding:44px 0 70px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+@media(max-width:1080px){
+  .meta-grid{grid-template-columns:1fr 1fr}
+  .section-grid,.scope-grid,.method-grid,.docs-grid,.team-grid,.gallery-grid,.marketing-principles{grid-template-columns:1fr}
+  .hero-image{min-height:520px}
+}
+@media(max-width:650px){
+  .shell{width:min(calc(100% - 28px),var(--max))}
+  .topbar-inner{min-height:64px}
+  .brand{display:none}
+  .hero{padding-top:36px}
+  .hero-image{min-height:400px}
+  .hero-caption{display:block}
+  .hero-caption strong{font-size:24px}
+  .hero-caption span{display:block;margin-top:12px;text-align:left}
+  .meta-grid,.marketing-grid,.credits{grid-template-columns:1fr}
+  .section{padding:84px 0}
+  .role-row{grid-template-columns:1fr;gap:8px}
+}
 </style>
 </head>
 <body>
-<header class="topbar"><div class="shell topbar-inner"><a class="backlink" href="index.html">Back to portfolio</a><div class="brand">David Pellet · Creative Art Director</div><a class="ghost-button" href="mailto:davidpellet@gmail.com">Contact</a></div></header>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="button" href="index.html">Back to portfolio</a>
+    <div class="brand">David Pellet · Creative Art Director</div>
+    <a class="button primary" href="mailto:davidpellet@gmail.com">Contact</a>
+  </div>
+</header>
+
 <main>
-<section class="hero"><div class="shell"><p class="eyebrow">Case study 01 · AAA world direction</p><h1>Assassin’s Creed Valhalla<br />Wrath of the Druids</h1><p class="hero-summary">Defining the visual direction of a new territory inside a globally recognized franchise: a ninth-century Irish open world with its own mood, atmosphere and identity, built in continuity with Assassin’s Creed Valhalla while remaining immediately distinctive.</p><div class="hero-image"><span class="asset-label">Hero image placeholder — replace with the strongest final vista from the project.</span></div><div class="meta-grid"><div class="meta-card"><span>Role</span><strong>Art Director</strong></div><div class="meta-card"><span>Studio</span><strong>Ubisoft Bordeaux</strong></div><div class="meta-card"><span>Project</span><strong>Assassin’s Creed Valhalla — Wrath of the Druids</strong></div><div class="meta-card"><span>Focus</span><strong>Territory identity, atmosphere, environments, characters and production alignment</strong></div><div class="meta-card"><span>What this proves</span><strong>AAA franchise direction, team alignment and world-building inside production constraints</strong></div></div></div></section>
-<section class="section"><div class="shell section-grid"><div><p class="eyebrow">The challenge</p><h2 class="section-title">Creating a new land without breaking the franchise.</h2></div><div class="section-copy"><p>The core challenge was to give Ireland a strong and memorable visual identity inside Assassin’s Creed Valhalla. The expansion had to feel fully connected to the larger game, yet distinctive enough that players would immediately sense they had entered a different territory, with its own atmosphere, culture, tensions and narrative tone.</p><p>This meant finding the right balance between continuity and differentiation: preserving the production reality, the established franchise language and the existing quality bar, while defining new environmental signatures, new tonal references and a clearer sense of place across landscapes, settlements, props, materials, characters and visual mood.</p></div></div></section>
-<section class="section"><div class="shell section-grid"><div><p class="eyebrow">My responsibility</p><h2 class="section-title">Vision, alignment and follow-through.</h2></div><div class="section-copy"><p>My role was to define and maintain the visual direction of this new territory through production.</p><ul><li>Establish the artistic intent for Ireland as a territory inside Valhalla.</li><li>Guide atmosphere, environment direction and overall mood.</li><li>Align multiple art disciplines around a coherent target quality.</li><li>Support concept, textures, props, VFX, characters and environment teams with clear direction and feedback.</li><li>Ensure that creative ambition remained compatible with production constraints and delivery realities.</li></ul><div class="note">This case study is intentionally written as a direction case study, not as a claim of sole authorship over all final images. The goal is to show decision-making, visual leadership and production alignment.</div></div></div></section>
-<section class="section"><div class="shell"><div class="section-grid" style="margin-bottom:28px;"><div><p class="eyebrow">Visual thesis</p><h2 class="section-title">Three pillars for the territory.</h2></div><div class="section-copy"><p>The territory needed a readable artistic thesis. The following three pillars structure the page and later help explain why the final direction feels coherent.</p></div></div><div class="thesis-grid"><div class="thesis-card"><h3>Mythic nature</h3><p>Ireland needed a strong feeling of natural presence: rich, alive, sometimes spiritual, and able to support mystery without abandoning grounded credibility.</p></div><div class="thesis-card"><h3>Territorial identity</h3><p>The expansion required a sense of difference in vegetation, settlement language, atmosphere and tone so that Ireland would not feel like a duplicate of England or Norway.</p></div><div class="thesis-card"><h3>Production clarity</h3><p>The direction had to be clear enough for teams to execute consistently, with decisions that could scale across assets, locations and disciplines.</p></div></div><div class="image-row"><div class="image-slot tall"><span class="asset-label">Environment signature placeholder.</span></div><div class="image-slot tall"><span class="asset-label">Settlement or atmosphere placeholder.</span></div></div></div></section>
-<section class="section"><div class="shell"><div class="section-grid" style="margin-bottom:28px;"><div><p class="eyebrow">Key decisions</p><h2 class="section-title">From taste to production choices.</h2></div><div class="section-copy"><p>Recruiters and creative leads need to understand not only what looked good, but what was decided, why it was decided, and how those decisions changed the work.</p></div></div><div class="decision-grid"><div class="decision-card"><h3>Decision 01 — Differentiate the atmosphere</h3><p>Ireland needed a more singular atmospheric identity: a mood that could support mystery, vegetation density and a slightly more lyrical environmental character while remaining readable and game-ready.</p></div><div class="decision-card"><h3>Decision 02 — Reinforce territorial signatures</h3><p>Environmental cues, material balance, settlement rhythms and compositional motifs needed to communicate “Ireland” quickly, so the expansion would not be perceived as a reskin.</p></div><div class="decision-card"><h3>Decision 03 — Keep the direction scalable</h3><p>The visual target had to remain understandable for multiple teams and disciplines, making the art direction actionable in a production context rather than purely conceptual.</p></div><div class="decision-card"><h3>Decision 04 — Protect franchise continuity</h3><p>Every change had to sit inside the wider Valhalla universe. Distinction was necessary, but franchise coherence remained non-negotiable.</p></div></div></div></section>
-<section class="section"><div class="shell section-grid"><div><p class="eyebrow">Direction in practice</p><h2 class="section-title">How the work moved through the team.</h2></div><div class="section-copy"><p>A good art direction page should also show how vision becomes production. This part is designed to receive a small number of diagrams, paintovers, explorations or feedback examples—not to overwhelm the page, but to prove process.</p><div class="flow"><div class="flow-step"><span class="num">01</span><h3>Intent</h3><p>Define the target identity and the emotional direction of the territory.</p></div><div class="flow-step"><span class="num">02</span><h3>Exploration</h3><p>Review options, references, visual contrasts and opportunities for differentiation.</p></div><div class="flow-step"><span class="num">03</span><h3>Alignment</h3><p>Give feedback across disciplines and maintain a shared understanding of the quality bar.</p></div><div class="flow-step"><span class="num">04</span><h3>Delivery</h3><p>Preserve coherence while supporting production realities and final asset implementation.</p></div></div><div class="image-row"><div class="image-slot"><span class="asset-label">Process image placeholder.</span></div><div class="image-slot"><span class="asset-label">Paintover or style target placeholder.</span></div></div></div></div></section>
-<section class="section"><div class="shell section-grid"><div><p class="eyebrow">Asset list</p><h2 class="section-title">What this page still needs.</h2></div><div class="section-copy"><div class="asset-grid"><div class="asset-card"><h3>Essential visuals</h3><p>1 hero vista, 2 supporting environment images, 1 settlement image, 1 atmosphere-heavy image, 2 process images or paintovers, and optionally 1 character-related image if it helps show scope.</p></div><div class="asset-card"><h3>Writing still to refine</h3><p>Once the exact selected visuals are locked, the text can be tightened so each paragraph speaks directly to what the visitor is seeing on screen.</p></div><div class="asset-card"><h3>Credits</h3><p>Final page should include a clean credit block clarifying your role and acknowledging that final shipped content was produced collaboratively inside Ubisoft Bordeaux.</p></div></div><div class="next-actions" style="margin-top:24px;"><h3>Next actions</h3><ol><li>Select the final 6–8 publishable images for this project.</li><li>Replace placeholders with real images and optimize them for web use.</li><li>Add a concise credit block at the end of the page.</li><li>Update the homepage hero and the project card with the chosen key visual.</li></ol></div></div></div></section>
-<footer><div class="shell">Wrath of the Druids — Case study draft V1 · David Pellet</div></footer>
-</main></body></html>
+<section class="hero">
+  <div class="shell">
+    <p class="eyebrow">Case study · AAA Art Direction</p>
+    <h1>Assassin’s Creed Valhalla<br>Wrath of the Druids</h1>
+    <p class="hero-lead">
+      Full visual leadership of the expansion at Ubisoft Bordeaux—from the initial art-direction framework
+      to daily on-floor direction across every art discipline, final implementation, and the worldwide
+      marketing key art developed with Ubisoft Montreal.
+    </p>
+
+    <div class="hero-image">
+      <div class="hero-caption">
+        <strong>Building a distinctive Ireland inside an established global franchise.</strong>
+        <span>Public shipped artwork. Internal direction decks, reviews and production documents are not reproduced.</span>
+      </div>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta"><span>Role</span><strong>Art Director</strong></div>
+      <div class="meta"><span>Studio</span><strong>Ubisoft Bordeaux</strong></div>
+      <div class="meta"><span>Leadership</span><strong>Direct on-floor management of the complete art team</strong></div>
+      <div class="meta"><span>Production partners</span><strong>Olivia Forni · Nicolas Freeman</strong></div>
+      <div class="meta"><span>Extended scope</span><strong>Final marketing visual direction with Ubisoft Montreal</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell section-grid">
+    <div>
+      <p class="eyebrow">The mandate</p>
+      <h2>Own the visual identity from concept to campaign.</h2>
+    </div>
+    <div class="copy">
+      <p>
+        My responsibility was not limited to environment supervision or final visual approval. I owned the
+        artistic direction of the expansion as a whole: defining the identity of Ireland, translating that
+        identity into executable direction for each department, directing the art team daily on the production
+        floor, aligning priorities with production, and protecting the vision through final delivery.
+      </p>
+      <p>
+        The central challenge was to create a territory that felt immediately new and memorable while remaining
+        fully credible inside Assassin’s Creed Valhalla. Every discipline had to contribute to the same world:
+        landscape, architecture, materials, characters, lighting, atmosphere, VFX, technical solutions and
+        marketing representation.
+      </p>
+
+      <div class="confidential">
+        <b>Confidentiality</b>
+        <p>
+          Internal art-direction decks, benchmarks, review packs, production notes, paintovers and iteration
+          documents remain confidential and are not displayed. This page describes their function, the leadership
+          process and the public result without reproducing proprietary material.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-grid">
+      <div>
+        <p class="eyebrow">Art-direction scope</p>
+        <h2>A unified vision across every department.</h2>
+      </div>
+      <div class="copy">
+        <p>
+          I converted the creative ambition into a shared visual system, then adapted the direction to the
+          language, constraints and decisions of each discipline.
+        </p>
+      </div>
+    </div>
+
+    <div class="scope-grid">
+      <article class="card"><span class="num">01 · World</span><h3>Territory & Environment</h3><p>Overall identity, environmental contrast, biome hierarchy, landmarks, regional differentiation, composition and player-facing visual readability.</p></article>
+      <article class="card"><span class="num">02 · Built World</span><h3>Architecture & Materials</h3><p>Historical coherence, settlement language, structural families, material contrast, surface vocabulary and consistency between buildings and landscape.</p></article>
+      <article class="card"><span class="num">03 · Narrative</span><h3>Characters & Factions</h3><p>Character identity, silhouette, cultural readability, iteration reviews, visual hierarchy and alignment between narrative intent and final design.</p></article>
+      <article class="card"><span class="num">04 · Atmosphere</span><h3>Lighting & VFX</h3><p>Mood, time-of-day identity, visual focus, weather, ritual atmosphere, supernatural restraint and clarity during gameplay and cinematics.</p></article>
+      <article class="card"><span class="num">05 · Production</span><h3>Level, Terrain & Technical Art</h3><p>Artistic intent translated into playable locations, terrain structure, asset reuse, technical constraints, performance considerations and scalable solutions.</p></article>
+      <article class="card"><span class="num">06 · Public Image</span><h3>Marketing Art Direction</h3><p>Extension of the game’s identity into final global campaign visuals, including composition, mood, staging, hierarchy and multi-format adaptation.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-grid">
+      <div>
+        <p class="eyebrow">Methodology</p>
+        <h2>Direction as a production system.</h2>
+      </div>
+      <div class="copy">
+        <p>
+          My methodology combined a clear visual thesis, department-specific documentation, direct floor
+          leadership and continuous validation. The aim was to make the direction memorable at the highest level
+          and actionable at the level of everyday production decisions.
+        </p>
+      </div>
+    </div>
+
+    <div class="method-grid">
+      <article class="card method-card"><span class="num">01</span><h3>Define the visual thesis</h3><p>Establish the emotional promise, visual identity, quality bar and creative boundaries before individual assets begin to diverge.</p></article>
+      <article class="card method-card"><span class="num">02</span><h3>Build a shared source of truth</h3><p>Create structured direction documents that turn broad ambition into references, rules, priorities, comparisons and decision criteria.</p></article>
+      <article class="card method-card"><span class="num">03</span><h3>Translate by discipline</h3><p>Reframe the same vision for concept art, level art, lighting, terrain, technical art, VFX, materials and character production.</p></article>
+      <article class="card method-card"><span class="num">04</span><h3>Direct on the floor</h3><p>Review work directly with artists, resolve ambiguity quickly, give visual feedback and keep creative decisions connected to production reality.</p></article>
+      <article class="card method-card"><span class="num">05</span><h3>Align with production</h3><p>Work closely with production to prioritize effort, manage dependencies, protect quality and keep the artistic ambition achievable.</p></article>
+      <article class="card method-card"><span class="num">06</span><h3>Protect continuity to market</h3><p>Carry the product’s visual identity into the final promotional campaign so the public image represents the game accurately and powerfully.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell section-grid">
+    <div>
+      <p class="eyebrow">Direction documentation</p>
+      <h2>Documents built to guide decisions—not decorate presentations.</h2>
+    </div>
+    <div class="copy">
+      <p>
+        I authored and maintained the visual-direction framework used to align the project. The documents were
+        living production tools: they established intent, created a common vocabulary, framed reviews and helped
+        each department understand how its work contributed to the same world.
+      </p>
+
+      <div class="docs-grid">
+        <article class="card doc-card"><h3>Master Art Direction Framework</h3><p>Project-level visual thesis, identity, mood, quality bar, priorities and shared creative language.</p></article>
+        <article class="card doc-card"><h3>Environment & Territory Direction</h3><p>Landscape identity, regional variety, atmosphere, visual contrasts, landmarks and exploration goals.</p></article>
+        <article class="card doc-card"><h3>Architecture & Settlement Guide</h3><p>Historical layers, structural families, settlement typologies, architectural silhouettes and regional coherence.</p></article>
+        <article class="card doc-card"><h3>Materials & Surface Direction</h3><p>Stone, earth, timber, roofing, weathering, vegetation integration and material contrast across the built world.</p></article>
+        <article class="card doc-card"><h3>Character Review & Validation Packs</h3><p>Structured review of early explorations, visual feedback, alignment with narrative intent and progressive validation.</p></article>
+        <article class="card doc-card"><h3>Marketing Key-Art Direction</h3><p>Campaign benchmark, emotional territories, composition goals, narrative hierarchy and direct review of final global assets.</p></article>
+        <article class="card doc-card"><h3>Discipline-Specific Briefs</h3><p>Focused direction, review notes, paintovers and decision support for level art, lighting, terrain, VFX and technical art.</p></article>
+        <article class="card doc-card"><h3>Ongoing Review Material</h3><p>Comparisons, visual targets, iteration feedback and validation criteria used throughout production rather than only at milestones.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell section-grid">
+    <div>
+      <p class="eyebrow">Direct leadership</p>
+      <h2>The art team I directed on the production floor.</h2>
+    </div>
+    <div class="copy">
+      <p>
+        The following artists and leads were under my direct artistic direction during production. I worked with
+        them in person on the floor through daily reviews, visual feedback, problem-solving, milestone preparation
+        and final validation.
+      </p>
+
+      <div class="team-grid">
+        <div class="team-block">
+          <h3>Direct Art Team</h3>
+          <div class="role-row"><b>Lead Artist</b><span>Alexandre Lutz</span></div>
+          <div class="role-row"><b>Concept Art</b><span>Arnaud Kleindienst, Lucas Leger</span></div>
+          <div class="role-row"><b>Level Art</b><span>Corentin Marquet, Nicolas Gorszczyk, Natanael Millet, Raphael Thiessard, Anthony Lemetayer, Jerome Rajcek, Quentin Donnaint, Cristel Mrowka</span></div>
+          <div class="role-row"><b>Lighting Art</b><span>Laurent Harduin, Ines Helmer</span></div>
+          <div class="role-row"><b>Technical Art</b><span>Joao Pereira Lemos Costa, Gery Arduino</span></div>
+          <div class="role-row"><b>Terrain Art</b><span>Robert Farrand</span></div>
+          <div class="role-row"><b>VFX Art</b><span>Hugo Marouzé, Anaïs Riff</span></div>
+          <div class="role-row"><b>Material Art</b><span>Ludovic Petiot</span></div>
+        </div>
+
+        <div class="team-block">
+          <h3>Production Partnership</h3>
+          <div class="role-row"><b>Production</b><span>Olivia Forni, Nicolas Freeman</span></div>
+          <div class="role-row"><b>Working model</b><span>Continuous collaboration on priorities, dependencies, milestones, staffing, quality targets and delivery risk.</span></div>
+          <div class="role-row"><b>Art / Production balance</b><span>Protect the artistic ambition while ensuring that decisions remained executable within schedule, technology and resource constraints.</span></div>
+          <div class="role-row"><b>Leadership outcome</b><span>A common visual target shared across departments rather than a collection of independently successful assets.</span></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        Art direction was delivered through direct human leadership: sitting with artists, reviewing their work in context,
+        clarifying the intention, making decisions and helping teams solve the visual problem without taking ownership away from them.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell">
+    <div class="section-grid">
+      <div>
+        <p class="eyebrow">Public shipped work</p>
+        <h2>The visible result of a shared direction.</h2>
+      </div>
+      <div class="copy">
+        <p>
+          These public images demonstrate different parts of the finished visual identity. They are team-produced
+          work shown here as evidence of the direction, not as claims of individual asset authorship.
+        </p>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="image-card">
+        <img src="assets/wrath/Dublin.jpeg" alt="Dublin environment from Wrath of the Druids">
+        <span class="image-label">Territory & settlement identity</span>
+      </div>
+      <div class="image-stack">
+        <div class="image-card small">
+          <img src="assets/wrath/Boyne%20Tombs.jpg" alt="Boyne Tombs environment from Wrath of the Druids">
+          <span class="image-label">Myth, architecture & atmosphere</span>
+        </div>
+        <div class="image-card small">
+          <img src="assets/wrath/dunseverick.jpg" alt="Coastal environment from Wrath of the Druids">
+          <span class="image-label">Landscape scale & regional contrast</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell section-grid">
+    <div>
+      <p class="eyebrow">Marketing Art Direction</p>
+      <h2>Extending the game’s identity into a global campaign.</h2>
+    </div>
+    <div class="copy">
+      <p>
+        I completely directed the final marketing visuals in direct collaboration with the Ubisoft Montreal team.
+        My role was to ensure that the campaign did not become a generic fantasy image, but remained a concentrated,
+        immediately readable expression of the expansion’s actual visual identity.
+      </p>
+      <p>
+        I guided the composition, character staging, environment, monumentality, atmosphere, lighting, narrative
+        clarity, visual hierarchy and the controlled suggestion of the supernatural. I then supervised the
+        adaptation of the final composition across landscape, square and vertical formats.
+      </p>
+
+      <div class="marketing-principles">
+        <div><b>Place</b><span>Make Ireland visually present through landscape, vegetation, moisture, scale and color.</span></div>
+        <div><b>Threat</b><span>Communicate the Children of Danu as a ritual and cultural danger, not generic enemies.</span></div>
+        <div><b>Monumentality</b><span>Use ancient structures and environmental scale to imply history, mystery and weight.</span></div>
+        <div><b>Restraint</b><span>Tease the fantastic without explaining or revealing everything in a single image.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell" style="margin-top:36px">
+    <figure class="marketing-main">
+      <img src="assets/wrath/marketing/wotd-marketing-landscape.jpg" alt="Wrath of the Druids final landscape marketing key art">
+      <figcaption>Final landscape key art — directly art-directed by David Pellet with the Ubisoft Montreal team.</figcaption>
+    </figure>
+
+    <div class="marketing-grid">
+      <figure>
+        <img src="assets/wrath/marketing/wotd-marketing-square.jpg" alt="Wrath of the Druids final square marketing key art">
+        <figcaption>Square campaign adaptation — visual hierarchy preserved for a different communication format.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/wrath/marketing/wotd-marketing-vertical.jpg" alt="Wrath of the Druids final vertical marketing key art">
+        <figcaption>Vertical campaign adaptation — composition and title placement rebalanced while retaining the same visual promise.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="shell section-grid">
+    <div>
+      <p class="eyebrow">Project credits</p>
+      <h2>A collaborative production under a unified art direction.</h2>
+    </div>
+    <div class="copy">
+      <p>
+        Final assets were created collaboratively. The credits below distinguish overall art direction,
+        direct departmental leadership and production partnership.
+      </p>
+
+      <div class="credits">
+        <div class="credit"><h3>Art Direction</h3><p>David Pellet</p></div>
+        <div class="credit"><h3>Cinematic Director</h3><p>Olivier Fleurette</p></div>
+        <div class="credit"><h3>Lead Artist</h3><p>Alexandre Lutz</p></div>
+        <div class="credit"><h3>Concept Art</h3><p>Arnaud Kleindienst, Lucas Leger</p></div>
+        <div class="credit"><h3>Level Art</h3><p>Corentin Marquet, Nicolas Gorszczyk, Natanael Millet, Raphael Thiessard, Anthony Lemetayer, Jerome Rajcek, Quentin Donnaint, Cristel Mrowka</p></div>
+        <div class="credit"><h3>Lighting Art</h3><p>Laurent Harduin, Ines Helmer</p></div>
+        <div class="credit"><h3>Technical Art</h3><p>Joao Pereira Lemos Costa, Gery Arduino</p></div>
+        <div class="credit"><h3>Terrain Art</h3><p>Robert Farrand</p></div>
+        <div class="credit"><h3>VFX Art</h3><p>Hugo Marouzé, Anaïs Riff</p></div>
+        <div class="credit"><h3>Material Art</h3><p>Ludovic Petiot</p></div>
+        <div class="credit"><h3>Production</h3><p>Olivia Forni, Nicolas Freeman</p></div>
+        <div class="credit"><h3>Marketing Collaboration</h3><p>Ubisoft Montreal team — final key-art production under David Pellet’s direct visual supervision.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    Assassin’s Creed Valhalla: Wrath of the Druids · Art Direction case study · David Pellet
+  </div>
+</footer>
+</body>
+</html>
