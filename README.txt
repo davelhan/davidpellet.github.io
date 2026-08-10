@@ -1,18 +1,21 @@
-DAVID PELLET PORTFOLIO V2
+DAVID PORTFOLIO SOURCE PACK V1
 
-Included:
-- index.html (homepage updated)
-- wrath-of-the-druids.html (new case study page)
+This package creates the project-specific folder structure under assets/
+for the new portfolio pages, similar in spirit to the Wrath organization.
 
-How to deploy:
-1. Replace the existing index.html in your GitHub repository folder.
-2. Add wrath-of-the-druids.html to the same folder.
-3. Commit both files in GitHub Desktop.
-4. Push origin.
-5. Wait 1–3 minutes and refresh the site.
+Important note:
+In this environment I could reliably collect and verify public source URLs,
+but not auto-download the remote image binaries themselves into the package.
+So this pack contains:
+- project folders
+- README notes per project
+- Windows .url shortcuts to the public sources
+- a manifest.json with the exact source URLs
 
-Live paths after deployment:
-- Homepage: /davidpellet.github.io/
-- Case study: /davidpellet.github.io/wrath-of-the-druids.html
+Practical use:
+1. Open the .url files from Windows.
+2. Save the chosen images into the same folder.
+3. Keep only the curated final visuals you want to publish.
+4. Update the HTML image paths to those local files.
 
-This version is still a structural draft with placeholder visual blocks.
+This should let you continue quickly while preserving an organized structure.
