@@ -53,20 +53,45 @@ img{display:block;width:100%}
 .hero-lead{
   max-width:960px;margin:28px 0 0;color:#cbc6bc;font-size:20px;line-height:1.7
 }
-.hero-image{
-  position:relative;margin-top:44px;min-height:650px;border:1px solid var(--line);
-  background:
-    linear-gradient(to top,rgba(4,5,4,.82),rgba(4,5,4,.08) 48%,rgba(4,5,4,.05)),
-    url("assets/wrath/connacht-lackanscaul.jpg") center/cover no-repeat,
-    linear-gradient(145deg,#263126,#0c100c);
-  overflow:hidden
+img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center
 }
-.hero-caption{
-  position:absolute;left:28px;right:28px;bottom:26px;display:flex;
-  justify-content:space-between;gap:24px;align-items:end
+figure{margin:0}
+.hero-media{
+  margin-top:44px;
+  border:1px solid var(--line);
+  background:#090a09
 }
-.hero-caption strong{max-width:740px;font-family:Georgia,"Times New Roman",serif;font-size:30px;font-weight:400}
-.hero-caption span{max-width:360px;color:#d6d0c5;font-size:12px;line-height:1.5;text-align:right}
+.hero-media img{
+  width:100%;
+  height:auto;
+  object-fit:contain
+}
+.hero-media figcaption{
+  display:grid;
+  grid-template-columns:1.4fr .6fr;
+  gap:28px;
+  padding:20px 22px 22px;
+  border-top:1px solid var(--line);
+  background:var(--surface)
+}
+.hero-media figcaption strong{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:25px;
+  font-weight:400;
+  line-height:1.25
+}
+.hero-media figcaption span{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  text-align:right
+}
 .meta-grid{
   display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);
   border-left:1px solid var(--line);margin-top:24px
@@ -96,7 +121,7 @@ img{display:block;width:100%}
 }
 .confidential b{color:var(--gold);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 .confidential p{margin:0;color:var(--muted);font-size:14px;line-height:1.68}
-.scope-grid,.method-grid,.docs-grid,.team-grid,.gallery-grid,.marketing-grid{
+.scope-grid,.method-grid,.docs-grid,.team-grid,.gallery-grid{
   display:grid;gap:18px
 }
 .scope-grid{grid-template-columns:repeat(3,1fr);margin-top:30px}
@@ -124,26 +149,53 @@ img{display:block;width:100%}
 .role-row:first-of-type{border-top:0;padding-top:0}
 .role-row b{font-size:13px}
 .role-row span{color:var(--muted);font-size:14px;line-height:1.65}
-.gallery-grid{grid-template-columns:1.3fr .7fr;margin-top:30px}
-.image-card{
-  position:relative;min-height:430px;border:1px solid var(--line);overflow:hidden;background:#10120f
+.gallery-grid{
+  grid-template-columns:1.3fr .7fr;
+  align-items:start;
+  margin-top:30px
 }
-.image-card img{height:100%;object-fit:cover}
-.image-card.small{min-height:205px}
-.image-stack{display:grid;gap:18px}
-.image-label{
-  position:absolute;left:18px;bottom:16px;padding:8px 10px;background:rgba(7,8,7,.76);
-  color:#eee8de;font-size:10px;letter-spacing:.1em;text-transform:uppercase
+.image-card{
+  border:1px solid var(--line);
+  background:#10120f
+}
+.image-card img{
+  width:100%;
+  height:auto;
+  object-fit:contain
+}
+.image-stack{
+  display:grid;
+  gap:18px;
+  align-content:start
+}
+.image-card figcaption,
+.marketing-main figcaption{
+  padding:15px 17px;
+  border-top:1px solid var(--line);
+  background:var(--surface);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55
+}
+.image-card figcaption strong,
+.marketing-main figcaption strong{
+  display:block;
+  margin-bottom:5px;
+  color:var(--text);
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase
 }
 .marketing-main{
-  border:1px solid var(--line);background:#10110f;overflow:hidden
+  border:1px solid var(--line);
+  background:#10110f
 }
-.marketing-main img{aspect-ratio:16/9;object-fit:cover}
-.marketing-grid{grid-template-columns:1fr 1fr;margin-top:18px}
-.marketing-grid figure{margin:0;border:1px solid var(--line);background:#10110f}
-.marketing-grid figure:first-child img{aspect-ratio:1/1;object-fit:cover}
-.marketing-grid figure:last-child img{aspect-ratio:2/3;object-fit:cover;object-position:center top}
-figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
+.marketing-main img{
+  width:100%;
+  height:auto;
+  object-fit:contain
+}
+
 .marketing-principles{
   display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px
 }
@@ -167,18 +219,17 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
 @media(max-width:1080px){
   .meta-grid{grid-template-columns:1fr 1fr}
   .section-grid,.scope-grid,.method-grid,.docs-grid,.team-grid,.gallery-grid,.marketing-principles{grid-template-columns:1fr}
-  .hero-image{min-height:520px}
+  .hero-media figcaption{grid-template-columns:1fr}
+  .hero-media figcaption span{text-align:left}
 }
 @media(max-width:650px){
   .shell{width:min(calc(100% - 28px),var(--max))}
   .topbar-inner{min-height:64px}
   .brand{display:none}
   .hero{padding-top:36px}
-  .hero-image{min-height:400px}
-  .hero-caption{display:block}
-  .hero-caption strong{font-size:24px}
-  .hero-caption span{display:block;margin-top:12px;text-align:left}
-  .meta-grid,.marketing-grid,.credits{grid-template-columns:1fr}
+  .hero-media figcaption{grid-template-columns:1fr}
+  .hero-media figcaption span{text-align:left}
+  .meta-grid,.credits{grid-template-columns:1fr}
   .section{padding:84px 0}
   .role-row{grid-template-columns:1fr;gap:8px}
 }
@@ -204,18 +255,20 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
       marketing key art developed with Ubisoft Montreal.
     </p>
 
-    <div class="hero-image">
-      <div class="hero-caption">
+    <figure class="hero-media">
+      <img src="./assets/wrath/connacht-lackanscaul.jpg" loading="eager"
+           alt="Public shipped environment artwork from Assassin’s Creed Valhalla: Wrath of the Druids">
+      <figcaption>
         <strong>Building a distinctive Ireland inside an established global franchise.</strong>
         <span>Public shipped artwork. Internal direction decks, reviews and production documents are not reproduced.</span>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
 
     <div class="meta-grid">
       <div class="meta"><span>Role</span><strong>Art Director</strong></div>
       <div class="meta"><span>Studio</span><strong>Ubisoft Bordeaux</strong></div>
       <div class="meta"><span>Leadership</span><strong>Direct on-floor management of the complete art team</strong></div>
-      <div class="meta"><span>Production partners</span><strong>Olivia Forni · Nicolas Freeman</strong></div>
+      <div class="meta"><span>Core partners</span><strong>Production: Olivia Forni · Nicolas Freeman<br>Graphic Technical Direction: Philippe Trarieux “Bob”</strong></div>
       <div class="meta"><span>Extended scope</span><strong>Final marketing visual direction with Ubisoft Montreal</strong></div>
     </div>
   </div>
@@ -232,7 +285,7 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
         My responsibility was not limited to environment supervision or final visual approval. I owned the
         artistic direction of the expansion as a whole: defining the identity of Ireland, translating that
         identity into executable direction for each department, directing the art team daily on the production
-        floor, aligning priorities with production, and protecting the vision through final delivery.
+        floor, aligning priorities with production, working daily with Graphic Technical Director Philippe Trarieux “Bob” to translate the vision into the game engine, and protecting the direction through final delivery.
       </p>
       <p>
         The central challenge was to create a territory that felt immediately new and memorable while remaining
@@ -289,7 +342,7 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
       <div class="copy">
         <p>
           My methodology combined a clear visual thesis, department-specific documentation, direct floor
-          leadership and continuous validation. The aim was to make the direction memorable at the highest level
+          leadership, close technical partnership for in-engine implementation and continuous validation. The aim was to make the direction memorable at the highest level
           and actionable at the level of everyday production decisions.
         </p>
       </div>
@@ -336,14 +389,15 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
 <section class="section">
   <div class="shell section-grid">
     <div>
-      <p class="eyebrow">Direct leadership</p>
-      <h2>The art team I directed on the production floor.</h2>
+      <p class="eyebrow">Leadership & core partnerships</p>
+      <h2>The team I directed—and the partners who helped make the vision executable.</h2>
     </div>
     <div class="copy">
       <p>
         The following artists and leads were under my direct artistic direction during production. I worked with
         them in person on the floor through daily reviews, visual feedback, problem-solving, milestone preparation
-        and final validation.
+        and final validation. Alongside this direct leadership, Philippe Trarieux “Bob” was my daily technical partner,
+        helping translate the artistic direction into robust in-engine implementation.
       </p>
 
       <div class="team-grid">
@@ -360,9 +414,10 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
         </div>
 
         <div class="team-block">
-          <h3>Production Partnership</h3>
+          <h3>Core Production & Technical Partnerships</h3>
+          <div class="role-row"><b>Graphic Technical Director</b><span>Philippe Trarieux “Bob” — daily partner for translating the artistic vision into the game engine and helping establish practical technical solutions for implementation.</span></div>
           <div class="role-row"><b>Production</b><span>Olivia Forni, Nicolas Freeman</span></div>
-          <div class="role-row"><b>Working model</b><span>Continuous collaboration on priorities, dependencies, milestones, staffing, quality targets and delivery risk.</span></div>
+          <div class="role-row"><b>Working model</b><span>Continuous collaboration on artistic intent, engine implementation, technical feasibility, priorities, dependencies, milestones, quality targets and delivery risk.</span></div>
           <div class="role-row"><b>Art / Production balance</b><span>Protect the artistic ambition while ensuring that decisions remained executable within schedule, technology and resource constraints.</span></div>
           <div class="role-row"><b>Leadership outcome</b><span>A common visual target shared across departments rather than a collection of independently successful assets.</span></div>
         </div>
@@ -392,19 +447,31 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
     </div>
 
     <div class="gallery-grid">
-      <div class="image-card">
-        <img src="assets/wrath/Dublin.jpeg" alt="Dublin environment from Wrath of the Druids">
-        <span class="image-label">Territory & settlement identity</span>
-      </div>
+      <figure class="image-card">
+        <img src="./assets/wrath/Dublin.jpeg" loading="lazy"
+             alt="Dublin environment from Wrath of the Druids">
+        <figcaption>
+          <strong>Territory & settlement identity</strong>
+          Public shipped artwork shown in its complete original composition, including all embedded legal and branding elements.
+        </figcaption>
+      </figure>
       <div class="image-stack">
-        <div class="image-card small">
-          <img src="assets/wrath/Boyne%20Tombs.jpg" alt="Boyne Tombs environment from Wrath of the Druids">
-          <span class="image-label">Myth, architecture & atmosphere</span>
-        </div>
-        <div class="image-card small">
-          <img src="assets/wrath/dunseverick.jpg" alt="Coastal environment from Wrath of the Druids">
-          <span class="image-label">Landscape scale & regional contrast</span>
-        </div>
+        <figure class="image-card">
+          <img src="./assets/wrath/Boyne%20Tombs.jpg" loading="lazy"
+               alt="Boyne Tombs environment from Wrath of the Druids">
+          <figcaption>
+            <strong>Myth, architecture & atmosphere</strong>
+            Public shipped artwork presented without overlays or cropping.
+          </figcaption>
+        </figure>
+        <figure class="image-card">
+          <img src="./assets/wrath/dunseverick.jpg" loading="lazy"
+               alt="Coastal environment from Wrath of the Druids">
+          <figcaption>
+            <strong>Landscape scale & regional contrast</strong>
+            Original framing preserved in full.
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -439,20 +506,9 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
 
   <div class="shell" style="margin-top:36px">
     <figure class="marketing-main">
-      <img src="assets/wrath/marketing/wotd-marketing-landscape.jpg" alt="Wrath of the Druids final landscape marketing key art">
-      <figcaption>Final landscape key art — directly art-directed by David Pellet with the Ubisoft Montreal team.</figcaption>
+      <img src="./assets/wrath/marketing/wotd-marketing-landscape.jpg" loading="lazy" alt="Wrath of the Druids final landscape marketing key art">
+      <figcaption><strong>Final landscape key art</strong>Directly art-directed by David Pellet with the Ubisoft Montreal team. The full original frame, logo and legal information are preserved.</figcaption>
     </figure>
-
-    <div class="marketing-grid">
-      <figure>
-        <img src="assets/wrath/marketing/wotd-marketing-square.jpg" alt="Wrath of the Druids final square marketing key art">
-        <figcaption>Square campaign adaptation — visual hierarchy preserved for a different communication format.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/wrath/marketing/wotd-marketing-vertical.jpg" alt="Wrath of the Druids final vertical marketing key art">
-        <figcaption>Vertical campaign adaptation — composition and title placement rebalanced while retaining the same visual promise.</figcaption>
-      </figure>
-    </div>
   </div>
 </section>
 
@@ -479,6 +535,7 @@ figcaption{padding:15px 17px;color:var(--muted);font-size:12px;line-height:1.55}
         <div class="credit"><h3>Terrain Art</h3><p>Robert Farrand</p></div>
         <div class="credit"><h3>VFX Art</h3><p>Hugo Marouzé, Anaïs Riff</p></div>
         <div class="credit"><h3>Material Art</h3><p>Ludovic Petiot</p></div>
+        <div class="credit"><h3>Graphic Technical Director</h3><p>Philippe Trarieux “Bob” — David Pellet’s daily technical partner for in-engine implementation of the art direction.</p></div>
         <div class="credit"><h3>Production</h3><p>Olivia Forni, Nicolas Freeman</p></div>
         <div class="credit"><h3>Marketing Collaboration</h3><p>Ubisoft Montreal team — final key-art production under David Pellet’s direct visual supervision.</p></div>
       </div>
