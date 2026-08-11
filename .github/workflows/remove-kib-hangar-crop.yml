@@ -1,0 +1,61 @@
+name: One-time KIB hangar crop cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/remove-kib-hangar-crop.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-kib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore full KIBONORA Return image
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('the-kib.html')
+          text = path.read_text(encoding='utf-8')
+
+          text = text.replace(
+              '.kib-feature-crop .crop-frame{height:235px;overflow:hidden;background:#0d1316}.kib-feature-crop img{width:100%;height:100%;object-fit:cover;object-position:center 56%}',
+              ''
+          )
+          text = text.replace(
+              '.kib-feature-crop .crop-frame{height:auto}.kib-feature-crop img{height:auto;object-fit:contain}',
+              ''
+          )
+          text = text.replace(
+              '<p>Artwork is presented without text overlays. Selected images use light editorial crops when needed for composition; captions remain outside the artwork.</p>',
+              '<p>Artwork is presented without text overlays. Images keep their natural framing unless a specific composition requires an editorial crop; captions remain outside the artwork.</p>'
+          )
+          text = text.replace(
+              '<figure class="media kib-feature kib-feature-crop"><div class="crop-frame"><img src="./assets/kib/Kinobora-warehouse_final_LI.jpg" alt="KIBONORA inside an industrial hangar"></div><figcaption>',
+              '<figure class="media kib-feature"><img src="./assets/kib/Kinobora-warehouse_final_LI.jpg" alt="KIBONORA inside an industrial hangar"><figcaption>'
+          )
+
+          path.write_text(text, encoding='utf-8')
+
+          workflow = Path('.github/workflows/remove-kib-hangar-crop.yml')
+          if workflow.exists():
+              workflow.unlink()
+          PY
+
+      - name: Commit KIB hangar cleanup
+        shell: bash
+        run: |
+          git config user.name "portfolio-layout-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Restore full KIBONORA Return artwork"
+          git push
