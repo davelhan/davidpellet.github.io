@@ -1,0 +1,71 @@
+name: Apply portfolio benchmark system
+
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-portfolio-system.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply-system:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link shared portfolio system
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          pages = {
+              'index.html': 'portfolio-home',
+              'wrath-of-the-druids.html': 'case-study wrath',
+              'the-kib.html': 'case-study kib',
+              'ghost-recon.html': 'case-study ghost',
+              'south-park-phone-destroyer.html': 'case-study southpark',
+              'visual-development.html': 'case-study visualdev',
+          }
+
+          link = '<link rel="stylesheet" href="./assets/portfolio-system.css">'
+
+          for filename, body_class in pages.items():
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+
+              if link not in text:
+                  text = text.replace('</head>', link + '\n</head>', 1)
+
+              if '<body>' in text:
+                  text = text.replace('<body>', f'<body class="{body_class}">', 1)
+              elif '<body class=' not in text:
+                  raise RuntimeError(f'Unable to locate body tag in {filename}')
+
+              if filename == 'the-kib.html':
+                  text = text.replace(
+                      '<span>David Pellet · Creative Art Director</span>',
+                      '<span class="brand">David Pellet · Creative Art Director</span>',
+                      1
+                  )
+
+              path.write_text(text, encoding='utf-8')
+
+          workflow = Path('.github/workflows/apply-portfolio-system.yml')
+          if workflow.exists():
+              workflow.unlink()
+          PY
+
+      - name: Commit benchmark alignment
+        shell: bash
+        run: |
+          git config user.name "portfolio-system-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Align all portfolio pages to THE KIB benchmark"
+          git push
