@@ -1,0 +1,79 @@
+name: One-time cleanup original web assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cleanup-original-web-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove source originals that have optimized web replacements
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          web_root = Path('assets/web')
+          text_paths = [p for p in Path('.').rglob('*') if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.md','.json','.xml'} and '.git' not in p.parts]
+          haystack = ''
+          for p in text_paths:
+              try:
+                  haystack += '\n' + p.read_text(encoding='utf-8', errors='ignore')
+              except Exception:
+                  pass
+
+          deleted = []
+          total = 0
+          supported = {'.jpg','.jpeg','.png','.webp'}
+
+          for webp in web_root.rglob('*.webp'):
+              rel = webp.relative_to(web_root)
+              source_dir = Path('assets') / rel.parent
+              stem = rel.stem
+              if not source_dir.exists():
+                  continue
+              for candidate in source_dir.iterdir():
+                  if not candidate.is_file():
+                      continue
+                  if candidate.stem != stem or candidate.suffix.lower() not in supported:
+                      continue
+                  if web_root in candidate.parents:
+                      continue
+                  rel_candidate = './' + candidate.as_posix()
+                  if rel_candidate in haystack or candidate.as_posix() in haystack:
+                      print(f'SKIP referenced: {candidate}')
+                      continue
+                  size = candidate.stat().st_size
+                  candidate.unlink()
+                  deleted.append((candidate.as_posix(), size))
+                  total += size
+
+          print('\nREMOVED SOURCE ORIGINALS')
+          for path, size in deleted:
+              print(f'{path}: {size/1048576:.2f} MB')
+          print(f'TOTAL REMOVED: {total/1048576:.2f} MB across {len(deleted)} files')
+
+          Path('.github/workflows/cleanup-original-web-assets.yml').unlink(missing_ok=True)
+          PY
+
+      - name: Commit repository cleanup
+        shell: bash
+        run: |
+          git config user.name "portfolio-cleanup-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Remove heavy original web assets"
+          git push
