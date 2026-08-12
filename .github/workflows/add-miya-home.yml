@@ -1,0 +1,61 @@
+name: One-time add MIYA to homepage
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-miya-home.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-home:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add MIYA case study to homepage
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+
+          s = s.replace(
+              'Five case studies. Five complementary dimensions of creative direction.',
+              'Six case studies. Six complementary dimensions of creative direction.'
+          )
+          s = s.replace(
+              'Together they demonstrate AAA art direction, original IP creation, production leadership, licensed-IP control and hands-on visual development.',
+              'Together they demonstrate AAA art direction, original IP creation, automotive concept development, production leadership, licensed-IP control and hands-on visual development.'
+          )
+
+          ghost = '<article class="project"><a class="project-media-link" href="ghost-recon.html" aria-label="Open Ghost Recon case study">'
+          miya = '''<article class="project"><a class="project-media-link" href="miya.html" aria-label="Open MIYA Electric Grand Tourer case study"><figure class="project-media-image"><img src="./assets/web/MIYA/MIYA-EGT-Project-1.webp" alt="MIYA Electric Grand Tourer" loading="lazy" decoding="async"></figure></a><div class="project-copy"><span class="project-number">03 / AUTOMOTIVE CONCEPT</span><h3>MIYA</h3><p class="project-meta">Electric Grand Tourer · Independent Concept · Visual Development</p><p>A Vietnamese vision of contemporary grand-touring luxury—connecting proportion, exterior identity, interior materiality and brand expression through one coherent automotive design language.</p><a class="text-link" href="miya.html">View case study</a></div></article>\n'''
+          if 'href="miya.html"' not in s:
+              s = s.replace(ghost, miya + ghost)
+
+          s = s.replace('03 / PRODUCTION LEADERSHIP', '04 / PRODUCTION LEADERSHIP')
+          s = s.replace('04 / LICENSED IP SYSTEM', '05 / LICENSED IP SYSTEM')
+          s = s.replace('05 / HANDS-ON CRAFT', '06 / HANDS-ON CRAFT')
+
+          p.write_text(s, encoding='utf-8')
+          Path('.github/workflows/add-miya-home.yml').unlink(missing_ok=True)
+          PY
+
+      - name: Commit homepage update
+        shell: bash
+        run: |
+          git config user.name "portfolio-update-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Add MIYA to portfolio homepage"
+          git push
