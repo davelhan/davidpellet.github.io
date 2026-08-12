@@ -1,0 +1,89 @@
+/* David Pellet portfolio system — THE KIB is the case-study benchmark */
+:root{
+  --bg:#11171a;
+  --surface:#1d2428;
+  --surface2:#242d31;
+  --text:#e8e5df;
+  --muted:#a7afb2;
+  --line:rgba(120,148,161,.25);
+  --accent:#7894a1;
+  --portfolio-max:1500px;
+}
+
+body.case-study{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+body.case-study .shell{width:min(calc(100% - 56px),var(--portfolio-max));margin-left:auto;margin-right:auto}
+body.case-study .top,body.case-study .topbar{position:sticky;top:0;z-index:50;background:rgba(17,23,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+body.case-study .nav,body.case-study .topbar-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+body.case-study .btn,body.case-study .button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--text);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+body.case-study .button.primary{background:transparent;color:var(--text);border-color:var(--line)}
+body.case-study .brand{color:var(--text);font-size:14px;font-weight:400;letter-spacing:0;text-transform:none}
+
+body.case-study .hero{padding:50px 0 38px!important}
+body.case-study .eyebrow{margin:0 0 16px;color:var(--accent);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+body.case-study h1,body.case-study h2{font-family:Inter,Arial,Helvetica,sans-serif;font-weight:300;letter-spacing:-.04em}
+body.case-study h1{margin:0;max-width:1180px;font-size:clamp(64px,8.8vw,132px);line-height:.84}
+body.case-study h2{margin:0;font-size:clamp(44px,5vw,76px);line-height:.98}
+body.case-study .lead,body.case-study .hero-lead{max-width:980px;margin:28px 0 0;color:#c5cbcd;font-size:20px;line-height:1.75}
+
+body.case-study .section{padding:92px 0!important;border-top:1px solid var(--line)}
+body.case-study .section-grid{display:grid;grid-template-columns:.62fr 1.38fr;gap:48px!important;align-items:start}
+body.case-study .copy p,body.case-study .copy li{color:var(--muted);font-size:17px;line-height:1.8}
+body.case-study .copy p:first-child{margin-top:0}
+
+/* Standard metadata rhythm */
+body.case-study:not(.wrath) .meta{margin-top:30px!important;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+body.case-study:not(.wrath):not(.visualdev) .meta{grid-template-columns:repeat(5,1fr)}
+body.case-study.visualdev .meta{grid-template-columns:repeat(4,1fr)}
+body.case-study:not(.wrath) .meta>div{min-height:140px;padding:24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+body.case-study:not(.wrath) .meta span{display:block;color:var(--accent);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+body.case-study:not(.wrath) .meta strong{display:block;margin-top:16px;font-size:16px;line-height:1.45}
+body.case-study.wrath .meta-grid{margin-top:30px!important;grid-template-columns:repeat(5,1fr)}
+body.case-study.wrath .meta{min-height:140px;padding:24px}
+
+/* Shared image treatment: full framing by default, caption below, never overlay text */
+body.case-study figure{margin:0}
+body.case-study .media,body.case-study .feature,body.case-study .hero-media,body.case-study .image-card,body.case-study .marketing-main{border:1px solid var(--line);background:#0d1316}
+body.case-study .media img,body.case-study .feature img,body.case-study .hero-media img,body.case-study .image-card img,body.case-study .marketing-main img{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
+body.case-study .media figcaption,body.case-study .caption,body.case-study .image-card figcaption,body.case-study .marketing-main figcaption,body.case-study .hero-media figcaption{display:block!important;padding:18px 20px 20px!important;border-top:1px solid var(--line);background:var(--surface);text-align:left!important}
+body.case-study .media figcaption strong,body.case-study .caption strong,body.case-study .image-card figcaption strong,body.case-study .marketing-main figcaption strong,body.case-study .hero-media figcaption strong{display:block;margin:0 0 7px;color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif;font-size:12px;font-weight:600;line-height:1.35;letter-spacing:.08em;text-transform:uppercase}
+body.case-study .media figcaption span,body.case-study .caption span,body.case-study .image-card figcaption span,body.case-study .marketing-main figcaption span,body.case-study .hero-media figcaption span{display:block;margin:0;color:var(--muted);font-size:12px;line-height:1.6;text-align:left!important}
+
+/* Shared content rhythm */
+body.case-study .cards,body.case-study .rules,body.case-study .proofs,body.case-study .timeline,body.case-study .team-grid,body.case-study .visuals,body.case-study .pipeline,body.case-study .scope-grid,body.case-study .method-grid,body.case-study .docs-grid,body.case-study .gallery-grid,body.case-study .credits{margin-top:24px!important}
+body.case-study .feature{margin-top:28px!important}
+body.case-study .duo,body.case-study .orthos{margin-top:24px!important}
+body.case-study .callout,body.case-study .quote,body.case-study .system-note{margin-top:22px!important}
+body.case-study .footer,body.case-study footer{padding:32px 0 48px!important;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+
+/* Page-specific preservation */
+body.case-study.kib .kib-gallery{margin-top:32px!important;gap:22px!important}
+body.case-study.kib .kib-columns,body.case-study.kib .kib-stack{gap:16px!important}
+body.case-study.kib .crop-left-vertical .crop-window{overflow:hidden}
+body.case-study.wrath .hero-media{margin-top:32px!important}
+body.case-study.wrath .method-card{min-height:250px!important}
+body.case-study.visualdev .duo{gap:18px!important}
+body.case-study.visualdev .orthos{gap:12px!important}
+
+/* Homepage keeps its own editorial structure but shares width and density */
+body.portfolio-home .shell{width:min(calc(100% - 56px),var(--portfolio-max))}
+body.portfolio-home .section{padding:92px 0!important}
+body.portfolio-home .section-head{margin-bottom:50px!important}
+body.portfolio-home .projects{gap:74px!important}
+
+@media(max-width:1080px){
+  body.case-study .section-grid{grid-template-columns:1fr}
+  body.case-study:not(.wrath) .meta,body.case-study.wrath .meta-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  body.case-study .shell,body.portfolio-home .shell{width:min(calc(100% - 28px),var(--portfolio-max))}
+  body.case-study .brand{display:none}
+  body.case-study .section{padding:68px 0!important}
+  body.case-study:not(.wrath) .meta,body.case-study.wrath .meta-grid{grid-template-columns:1fr}
+  body.case-study h1{font-size:clamp(52px,16vw,76px)}
+  body.portfolio-home .section{padding:72px 0!important}
+}
