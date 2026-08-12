@@ -79,11 +79,109 @@ body.portfolio-home .projects{gap:74px!important}
   body.case-study .section-grid{grid-template-columns:1fr}
   body.case-study:not(.wrath) .meta,body.case-study.wrath .meta-grid{grid-template-columns:1fr 1fr}
 }
+
+/* Genuine mobile composition — not just desktop blocks stacked vertically */
 @media(max-width:650px){
-  body.case-study .shell,body.portfolio-home .shell{width:min(calc(100% - 28px),var(--portfolio-max))}
-  body.case-study .brand{display:none}
-  body.case-study .section{padding:68px 0!important}
-  body.case-study:not(.wrath) .meta,body.case-study.wrath .meta-grid{grid-template-columns:1fr}
-  body.case-study h1{font-size:clamp(52px,16vw,76px)}
-  body.portfolio-home .section{padding:72px 0!important}
+  body.case-study .shell,body.portfolio-home .shell{width:min(calc(100% - 32px),var(--portfolio-max))!important}
+
+  /* Case study navigation */
+  body.case-study .nav,body.case-study .topbar-inner{min-height:60px!important;gap:8px!important}
+  body.case-study .brand{display:none!important}
+  body.case-study .btn,body.case-study .button{min-height:36px!important;padding:0 12px!important;font-size:10px!important;letter-spacing:.06em!important}
+
+  /* Case study hero */
+  body.case-study .hero{padding:32px 0 24px!important}
+  body.case-study .eyebrow{margin-bottom:11px!important;font-size:9px!important;line-height:1.4!important;letter-spacing:.15em!important}
+  body.case-study h1{font-size:clamp(42px,13vw,58px)!important;line-height:.91!important;letter-spacing:-.035em!important}
+  body.case-study h2{font-size:clamp(34px,10.5vw,46px)!important;line-height:1!important;letter-spacing:-.03em!important}
+  body.case-study .lead,body.case-study .hero-lead{margin-top:18px!important;font-size:16px!important;line-height:1.58!important}
+  body.case-study.miya .miya-mark{width:min(180px,54vw)!important;margin:0 0 22px!important}
+
+  /* Metadata becomes compact instead of five oversized cards */
+  body.case-study:not(.wrath) .meta,body.case-study.wrath .meta-grid{grid-template-columns:1fr!important;margin-top:22px!important}
+  body.case-study:not(.wrath) .meta>div,body.case-study.wrath .meta{min-height:0!important;padding:14px 16px!important}
+  body.case-study:not(.wrath) .meta strong{margin-top:7px!important;font-size:14px!important;line-height:1.4!important}
+  body.case-study.wrath .meta strong{font-size:14px!important;line-height:1.4!important}
+
+  /* Content rhythm */
+  body.case-study .section{padding:48px 0!important}
+  body.case-study .section-grid{grid-template-columns:1fr!important;gap:20px!important}
+  body.case-study .copy p,body.case-study .copy li{font-size:15.5px!important;line-height:1.65!important}
+  body.case-study .copy p{margin-bottom:14px!important}
+  body.case-study .cards,body.case-study .rules,body.case-study .proofs,body.case-study .timeline,body.case-study .team-grid,body.case-study .visuals,body.case-study .pipeline,body.case-study .scope-grid,body.case-study .method-grid,body.case-study .docs-grid,body.case-study .gallery-grid,body.case-study .credits,body.case-study .duo,body.case-study .orthos{grid-template-columns:1fr!important;gap:12px!important;margin-top:18px!important}
+  body.case-study .feature{margin-top:18px!important}
+  body.case-study .callout,body.case-study .quote,body.case-study .system-note{margin-top:16px!important;padding:18px!important;font-size:14px!important;line-height:1.6!important}
+
+  /* Images and captions */
+  body.case-study .media figcaption,body.case-study .caption,body.case-study .image-card figcaption,body.case-study .marketing-main figcaption,body.case-study .hero-media figcaption{padding:13px 14px 14px!important}
+  body.case-study .media figcaption strong,body.case-study .caption strong,body.case-study .image-card figcaption strong,body.case-study .marketing-main figcaption strong,body.case-study .hero-media figcaption strong{font-size:10px!important;margin-bottom:5px!important}
+  body.case-study .media figcaption span,body.case-study .caption span,body.case-study .image-card figcaption span,body.case-study .marketing-main figcaption span,body.case-study .hero-media figcaption span{font-size:11px!important;line-height:1.5!important}
+  body.case-study.kib .kib-gallery{margin-top:20px!important;gap:12px!important}
+  body.case-study.kib .kib-columns,body.case-study.kib .kib-stack{grid-template-columns:1fr!important;gap:12px!important}
+  body.case-study.kib .crop-left-vertical .crop-window{aspect-ratio:auto!important}
+  body.case-study.kib .crop-left-vertical .crop-window img{height:auto!important;object-fit:contain!important;object-position:center!important}
+  body.case-study.wrath .hero-media{margin-top:20px!important}
+  body.case-study.wrath .method-card{min-height:0!important}
+  body.case-study .footer,body.case-study footer{padding:24px 0 30px!important}
+
+  /* Homepage header + hero */
+  body.portfolio-home .nav{min-height:62px!important;gap:12px!important}
+  body.portfolio-home .brand strong{font-size:13px!important}
+  body.portfolio-home .brand span{display:none!important}
+  body.portfolio-home .nav-links{gap:10px!important}
+  body.portfolio-home .nav-cta{padding:9px 12px!important;font-size:11px!important}
+  body.portfolio-home .hero{padding:88px 0 30px!important}
+  body.portfolio-home .hero-grid{grid-template-columns:1fr!important;gap:26px!important}
+  body.portfolio-home .hero h1{font-size:clamp(50px,16vw,62px)!important;line-height:.88!important}
+  body.portfolio-home .hero-role{margin-top:20px!important;font-size:22px!important}
+  body.portfolio-home .hero-intro{margin-top:18px!important;font-size:15.5px!important;line-height:1.6!important}
+  body.portfolio-home .hero-actions{margin-top:24px!important}
+  body.portfolio-home .button{min-height:42px!important;padding:0 15px!important;font-size:11px!important}
+  body.portfolio-home .hero-visual{min-height:0!important}
+
+  /* Homepage proof strip: compact 2x2 instead of four tall rows */
+  body.portfolio-home .proof-strip{margin-top:24px!important;padding:16px 0!important}
+  body.portfolio-home .proof-grid{grid-template-columns:1fr 1fr!important;gap:16px 14px!important}
+  body.portfolio-home .proof-item strong{font-size:20px!important}
+  body.portfolio-home .proof-item span{margin-top:4px!important;font-size:10.5px!important;line-height:1.35!important}
+
+  /* Homepage sections */
+  body.portfolio-home .section{padding:56px 0!important}
+  body.portfolio-home .section-head{grid-template-columns:1fr!important;gap:16px!important;margin-bottom:30px!important}
+  body.portfolio-home .section h2{font-size:clamp(34px,10.5vw,44px)!important;line-height:1!important}
+  body.portfolio-home .section-lead{font-size:15px!important;line-height:1.6!important}
+  body.portfolio-home .projects{gap:50px!important}
+  body.portfolio-home .project,body.portfolio-home .project:nth-child(even){grid-template-columns:1fr!important;gap:18px!important}
+  body.portfolio-home .project:nth-child(even) .project-media,body.portfolio-home .project:nth-child(even) .project-media-link{order:initial!important}
+
+  /* Critical fix: remove desktop min-heights that created large empty boxes on phones */
+  body.portfolio-home .project-media,body.portfolio-home .project-media-image{min-height:0!important}
+  body.portfolio-home .project-media-image{aspect-ratio:16/10!important;padding:6px!important}
+  body.portfolio-home .project-media-image img{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:contain!important}
+
+  body.portfolio-home .project-copy h3{margin:10px 0 8px!important;font-size:clamp(34px,10vw,42px)!important}
+  body.portfolio-home .project-meta{margin-bottom:16px!important;font-size:10px!important;line-height:1.5!important}
+  body.portfolio-home .project-copy p{font-size:15px!important;line-height:1.6!important;max-width:none!important}
+  body.portfolio-home .text-link{margin-top:18px!important;font-size:11px!important}
+
+  body.portfolio-home .approach-grid{grid-template-columns:1fr!important}
+  body.portfolio-home .approach-card{min-height:0!important;padding:22px!important}
+  body.portfolio-home .approach-card h3{margin:20px 0 10px!important;font-size:28px!important}
+  body.portfolio-home .experience{grid-template-columns:1fr!important}
+  body.portfolio-home .experience-row{grid-template-columns:76px 1fr!important;gap:14px!important;padding:20px 0!important}
+  body.portfolio-home .experience-row:nth-child(odd),body.portfolio-home .experience-row:nth-child(even){padding-left:0!important;padding-right:0!important;border-right:0!important}
+  body.portfolio-home .about-grid{grid-template-columns:1fr!important;gap:26px!important}
+  body.portfolio-home .about-copy p{font-size:15.5px!important;line-height:1.65!important}
+  body.portfolio-home .contact{padding:56px 0 32px!important}
+  body.portfolio-home .contact h2{font-size:clamp(40px,12vw,54px)!important;line-height:.98!important}
+  body.portfolio-home .contact-links{margin-top:24px!important;gap:10px!important}
+  body.portfolio-home footer{margin-top:40px!important;gap:8px!important}
+}
+
+@media(max-width:400px){
+  body.case-study .shell,body.portfolio-home .shell{width:min(calc(100% - 24px),var(--portfolio-max))!important}
+  body.case-study .btn,body.case-study .button{padding:0 10px!important;font-size:9px!important}
+  body.case-study h1{font-size:40px!important}
+  body.portfolio-home .proof-grid{grid-template-columns:1fr 1fr!important}
+  body.portfolio-home .project-media-image{padding:4px!important}
 }
