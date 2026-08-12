@@ -1,0 +1,117 @@
+name: Refresh MIYA and homepage order
+
+on:
+  push:
+    paths:
+      - '.github/workflows/refresh-miya-and-home.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+
+      - name: Refresh MIYA web assets and homepage order
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import re
+
+          # 1) Regenerate optimized MIYA assets from latest corrected PNG files.
+          src_root = Path('assets/MIYA')
+          out_root = Path('assets/web/MIYA')
+          out_root.mkdir(parents=True, exist_ok=True)
+          total_before = 0
+          total_after = 0
+          count = 0
+
+          for src in sorted(src_root.glob('*.png')):
+              if src.name == 'MIYA-LOGO-trans.png':
+                  continue
+              with Image.open(src) as im:
+                  im.load()
+                  before = src.stat().st_size
+                  w, h = im.size
+                  scale = min(1.0, 2400 / max(w, h))
+                  if scale < 1.0:
+                      im = im.resize((round(w * scale), round(h * scale)), Image.Resampling.LANCZOS)
+                  im = im.convert('RGB')
+                  out = out_root / f'{src.stem}.webp'
+                  im.save(out, 'WEBP', quality=84, method=6)
+                  after = out.stat().st_size
+                  total_before += before
+                  total_after += after
+                  count += 1
+                  print(f'{src.name}: {before/1048576:.2f} MB -> {after/1048576:.2f} MB')
+
+          # Originals are backed up locally by the owner; keep the public repo lean.
+          for src in src_root.glob('*.png'):
+              if src.name != 'MIYA-LOGO-trans.png':
+                  src.unlink()
+
+          print(f'Refreshed {count} MIYA images; {total_before/1048576:.2f} MB -> {total_after/1048576:.2f} MB')
+
+          # 2) Reorder homepage projects: Wrath, KIB, Ghost, South Park, MIYA, Visual Dev.
+          p = Path('index.html')
+          html = p.read_text(encoding='utf-8')
+
+          start = html.index('<div class="projects">') + len('<div class="projects">')
+          end = html.index('</div></div></section>', start)
+          projects_html = html[start:end]
+          articles = re.findall(r'<article class="project">.*?</article>', projects_html, flags=re.S)
+          if len(articles) != 6:
+              raise RuntimeError(f'Expected 6 project articles, found {len(articles)}')
+
+          def pick(token):
+              matches = [a for a in articles if token in a]
+              if len(matches) != 1:
+                  raise RuntimeError(f'Could not uniquely identify article: {token}')
+              return matches[0]
+
+          wrath = pick('wrath-of-the-druids.html')
+          kib = pick('the-kib.html')
+          ghost = pick('ghost-recon.html')
+          south = pick('south-park-phone-destroyer.html')
+          miya = pick('miya.html')
+          visual = pick('visual-development.html')
+
+          def renumber(article, number):
+              return re.sub(r'<span class="project-number">\d{2} / ', f'<span class="project-number">{number:02d} / ', article, count=1)
+
+          ordered = [
+              renumber(wrath, 1),
+              renumber(kib, 2),
+              renumber(ghost, 3),
+              renumber(south, 4),
+              renumber(miya, 5),
+              renumber(visual, 6),
+          ]
+          html = html[:start] + '\n' + '\n'.join(ordered) + '\n' + html[end:]
+          p.write_text(html, encoding='utf-8')
+
+          # Remove this one-time workflow after execution.
+          Path('.github/workflows/refresh-miya-and-home.yml').unlink(missing_ok=True)
+          PY
+
+      - name: Commit refresh
+        shell: bash
+        run: |
+          git config user.name "portfolio-update-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Refresh MIYA artwork and homepage order"
+          git push
