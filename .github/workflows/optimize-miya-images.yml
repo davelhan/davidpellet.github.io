@@ -1,0 +1,79 @@
+name: One-time MIYA image optimization
+
+on:
+  push:
+    paths:
+      - '.github/workflows/optimize-miya-images.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Pillow
+        run: python -m pip install --quiet pillow
+
+      - name: Optimize MIYA portfolio images
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          root = Path('assets/MIYA')
+          outroot = Path('assets/web/MIYA')
+          outroot.mkdir(parents=True, exist_ok=True)
+          page = Path('miya.html')
+          html = page.read_text(encoding='utf-8')
+          total_before = total_after = 0
+          count = 0
+
+          for src in sorted(root.glob('*.png')):
+              if src.name == 'MIYA-LOGO-trans.png':
+                  continue
+              before = src.stat().st_size
+              with Image.open(src) as im:
+                  im.load()
+                  w,h = im.size
+                  scale = min(1.0, 2400/max(w,h))
+                  if scale < 1:
+                      im = im.resize((round(w*scale),round(h*scale)), Image.Resampling.LANCZOS)
+                  alpha = im.mode in ('RGBA','LA') or 'transparency' in im.info
+                  im = im.convert('RGBA' if alpha else 'RGB')
+                  out = outroot / (src.stem + '.webp')
+                  im.save(out,'WEBP',quality=86 if alpha else 84,method=6)
+              after = out.stat().st_size
+              oldref = './' + src.as_posix()
+              newref = './' + out.as_posix()
+              html = html.replace(oldref,newref)
+              total_before += before
+              total_after += after
+              count += 1
+              print(f'{src}: {before/1048576:.2f} MB -> {after/1048576:.2f} MB')
+              src.unlink()
+
+          page.write_text(html,encoding='utf-8')
+          print(f'OPTIMIZED {count} MIYA images')
+          if total_before:
+              print(f'TOTAL {total_before/1048576:.2f} MB -> {total_after/1048576:.2f} MB; saving {(1-total_after/total_before)*100:.1f}%')
+          Path('.github/workflows/optimize-miya-images.yml').unlink(missing_ok=True)
+          PY
+
+      - name: Commit optimized MIYA assets
+        shell: bash
+        run: |
+          git config user.name "portfolio-image-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Optimize MIYA case study images"
+          git push
