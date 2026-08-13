@@ -1,0 +1,62 @@
+name: Cleanup AI punctuation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-ai-punctuation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Remove em dashes from user-facing copy
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          targets = sorted(Path('.').glob('*.html'))
+          manifest = Path('manifest.json')
+          if manifest.exists():
+              targets.append(manifest)
+
+          changed = []
+          total = 0
+          for path in targets:
+              text = path.read_text(encoding='utf-8')
+              count = text.count('—')
+              if not count:
+                  continue
+
+              cleaned = re.sub(r'\s*—\s*', ', ', text)
+              cleaned = re.sub(r',\s*,', ',', cleaned)
+              path.write_text(cleaned, encoding='utf-8')
+              changed.append((str(path), count))
+              total += count
+
+          print(f'Removed {total} em dash(es) from {len(changed)} file(s).')
+          for path, count in changed:
+              print(f'  {path}: {count}')
+          PY
+
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html' manifest.json
+          if git diff --cached --quiet; then
+            echo "No em dashes found."
+            exit 0
+          fi
+          git commit -m "Remove em dashes from portfolio copy"
+          git push
