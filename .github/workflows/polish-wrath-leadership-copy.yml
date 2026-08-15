@@ -1,0 +1,48 @@
+name: Polish Wrath leadership copy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/polish-wrath-leadership-copy.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Polish leadership wording
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('wrath-of-the-druids.html')
+          text = p.read_text(encoding='utf-8')
+          replacements = [
+              (
+                  'Cross-discipline art leadership through directors and leads, with targeted artist reviews when needed',
+                  'Cross-discipline leadership through directors and leads, with focused artist reviews when needed'
+              ),
+              (
+                  'Art direction was delivered as orchestration rather than micromanagement: setting a clear target, aligning directors and leads, reviewing work in context, making decisions across disciplines, and stepping into direct artist feedback when fine tuning or a difficult visual problem required it.',
+                  'Art direction operated as orchestration: setting a clear visual target, aligning directors and leads, reviewing work in context, making decisions across disciplines, and stepping into direct artist feedback when fine tuning or a difficult visual problem required it.'
+              ),
+          ]
+          for old, new in replacements:
+              if old not in text:
+                  raise RuntimeError(f'Expected text not found: {old}')
+              text = text.replace(old, new, 1)
+          p.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wrath-of-the-druids.html
+          git diff --cached --check
+          git commit -m "Polish Wrath leadership wording"
+          git push
