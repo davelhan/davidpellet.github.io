@@ -1,0 +1,81 @@
+name: Add project art credits
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-project-art-credits.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add verified art credits
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(text, old, new, label):
+              if new in text:
+                  print(f'{label}: already present')
+                  return text
+              if old not in text:
+                  raise RuntimeError(f'{label}: anchor not found')
+              return text.replace(old, new, 1)
+
+          # Wrath of the Druids
+          p = Path('wrath-of-the-druids.html')
+          text = p.read_text(encoding='utf-8')
+
+          old = '<div class="role-row"><b>Material Art</b><span>Ludovic Petiot</span></div></div><div class="team-block"><h3>Core Production & Technical Partnerships</h3>'
+          new = '<div class="role-row"><b>Material Art</b><span>Ludovic Petiot</span></div><div class="role-row"><b>Lead Character Artist</b><span>Eric Moreno</span></div><div class="role-row"><b>Character Art</b><span>Loïc Sprimont, Arthur Gatineau, Romain Truchard, Mike-Amir El Frangi, Jason De Loos, Ye Wen Xiang</span></div><div class="role-row"><b>Character Rig / Technical Art</b><span>Thomas Vialetto</span></div><div class="role-row"><b>Character Concept Art</b><span>Lucas Leger, Arnaud Kleindienst, Quentin Gillet</span></div></div><div class="team-block"><h3>Core Production & Technical Partnerships</h3>'
+          text = replace_once(text, old, new, 'Wrath leadership character credits')
+
+          old = '<div class="credit"><h3>Material Art</h3><p>Ludovic Petiot</p></div><div class="credit"><h3>Graphic Technical Director</h3>'
+          new = '<div class="credit"><h3>Material Art</h3><p>Ludovic Petiot</p></div><div class="credit"><h3>Lead Character Artist</h3><p>Eric Moreno</p></div><div class="credit"><h3>Character Art</h3><p>Loïc Sprimont, Arthur Gatineau, Romain Truchard, Mike-Amir El Frangi, Jason De Loos, Ye Wen Xiang</p></div><div class="credit"><h3>Character Rig / Technical Art</h3><p>Thomas Vialetto</p></div><div class="credit"><h3>Character Concept Art</h3><p>Lucas Leger, Arnaud Kleindienst, Quentin Gillet</p></div><div class="credit"><h3>Graphic Technical Director</h3>'
+          text = replace_once(text, old, new, 'Wrath project character credits')
+          p.write_text(text, encoding='utf-8')
+
+          # Ghost Recon
+          p = Path('ghost-recon.html')
+          text = p.read_text(encoding='utf-8')
+          marker = '<section class="section"><div class="shell section-grid"><div><p class="eyebrow">What this proves</p>'
+          credits = '''<section class="section"><div class="shell"><div class="section-grid"><div><p class="eyebrow">Project art credits</p><h2>The artists behind the work.</h2></div><div class="copy"><p>These are the publicly credited Ubisoft Bordeaux art contributors for the two productions covered on this page. The lists recognize the artists and technical artists who built the shipped work and do not imply individual authorship of every asset shown.</p></div></div><div class="team-grid"><div class="team-block"><h3>Ghost Recon Wildlands, Year 2, Ubisoft Bordeaux</h3><div class="role-row"><b>Lead Artist</b><span>David Pellet</span></div><div class="role-row"><b>Senior Level Artist</b><span>Benjamin Chavigner</span></div><div class="role-row"><b>Level Art</b><span>Șadan Aksoy, Nidal Guedouar</span></div><div class="role-row"><b>Senior Character Modeler</b><span>Eric Moreno</span></div><div class="role-row"><b>Senior Character Artist</b><span>Oscar Giménez</span></div><div class="role-row"><b>Character Art</b><span>Andres Ariza, Arthur Gatineau, Lucas Léger, Hélène Oger, Loïc Sprimont</span></div><div class="role-row"><b>UI Art</b><span>Fabrice Natario</span></div><div class="role-row"><b>FX Art</b><span>Hugo Marouze</span></div></div><div class="team-block"><h3>Ghost Recon Breakpoint, Ubisoft Bordeaux</h3><div class="role-row"><b>Expert Technical Director, Art</b><span>Philippe Trarieux</span></div><div class="role-row"><b>Lead Artist</b><span>David Pellet</span></div><div class="role-row"><b>Associate Lead Artist</b><span>Alexandre Lutz</span></div><div class="role-row"><b>Associate Lead Props</b><span>Nidal Guedouar</span></div><div class="role-row"><b>Associate Lead Character</b><span>Andres Ariza</span></div><div class="role-row"><b>Senior Level Artist</b><span>Cristel Mrowka</span></div><div class="role-row"><b>Level Art</b><span>Damien Bonnefoux, Hélène Oger, Felix Chamerois, Robert Farrand, Nicolas Gorszczyk, James Kingsbery, Clément Lavarenne, Corentin Marquet, Clément Masset, Maxime Pagès, Jérôme Rajcek, Chloé Ravallec, Clément Rigondet, Damien Touttee, Rémi Vallet</span></div><div class="role-row"><b>Senior Character Artist</b><span>Oscar Giménez</span></div><div class="role-row"><b>Character Art</b><span>Loïc Sprimont, Yarrid Henrard, Jason De Loos, Arthur Gatineau, Gintautas Jankus, Jake Waddington</span></div><div class="role-row"><b>Concept Art</b><span>Arnaud Kleindienst, Lucas Léger</span></div><div class="role-row"><b>Special Effects Art</b><span>Hugo Marouze, Steven Dupuy</span></div><div class="role-row"><b>Technical Director, Art</b><span>Benjamin Laidlaw</span></div><div class="role-row"><b>Technical Art</b><span>Géry Arduino, João Pereira Lemos Costa, Romain Truchard</span></div><div class="role-row"><b>Texture Art</b><span>Ludovic Petiot</span></div></div></div></div></section>\n'''
+          if 'Ghost Recon Wildlands, Year 2, Ubisoft Bordeaux' not in text:
+              if marker not in text:
+                  raise RuntimeError('Ghost Recon credits anchor not found')
+              text = text.replace(marker, credits + marker, 1)
+          p.write_text(text, encoding='utf-8')
+
+          # South Park: Phone Destroyer
+          p = Path('south-park-phone-destroyer.html')
+          text = p.read_text(encoding='utf-8')
+          marker = '<section class="section"><div class="shell section-grid"><div><p class="eyebrow">What this proves</p>'
+          credits = '''<section class="section"><div class="shell"><div class="section-grid"><div><p class="eyebrow">Project art credits</p><h2>The people behind the visual production.</h2></div><div class="copy"><p>I served as Lead Artist and Art Director during my tenure on the project. I left before release and production continued afterward. The final shipped credits list Dan Rossati as Art Director. The contributors below are credited on the released game and are included here to recognize the team behind the work.</p></div></div><div class="proofs"><article class="proof"><small>RedLynx Core, Art</small><h3>Game art team</h3><p><strong>Expert Artist:</strong> Andrea Fryer<br><strong>2D Artists:</strong> Ines Freitas, Petri Sorsakivi, Rui Wang<br><strong>UI Artists:</strong> Louise Lazzari, Rafael Lima Silva<br><strong>Animators:</strong> Miguel Mendes, Saku Jalkanen<br><strong>VFX Artist:</strong> Sauli Korhonen<br><strong>3D Artist:</strong> Ukko-Pekka Kuivalainen</p></article><article class="proof"><small>South Park Digital Studios</small><h3>Visual partners</h3><p><strong>Art Director:</strong> Joel Hanlin<br><strong>Character and Background Designers:</strong> Greg Postma, Keo Thongkham, Katie Frasier, Charis Patton, Shaina Reyes, David Brown<br><strong>Director of Animation:</strong> Jenny Yu<br><strong>Animators:</strong> Megan Prazenica, Edgar Tellez, Dan Becker</p></article></div></div></section>\n'''
+          if 'RedLynx Core, Art' not in text:
+              if marker not in text:
+                  raise RuntimeError('South Park credits anchor not found')
+              text = text.replace(marker, credits + marker, 1)
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wrath-of-the-druids.html ghost-recon.html south-park-phone-destroyer.html
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Add complete art team credits to case studies"
+          git push
