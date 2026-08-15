@@ -1,0 +1,82 @@
+name: Refine Wrath orchestration copy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refine-wrath-orchestration-copy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refine Wrath leadership framing
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('wrath-of-the-druids.html')
+          text = p.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  'Full visual leadership of the expansion at Ubisoft Bordeaux, from the initial art-direction framework to daily on-floor direction across every art discipline, final implementation, and the worldwide marketing key art developed with Ubisoft Montreal.',
+                  'Full visual leadership of the expansion at Ubisoft Bordeaux, setting the visual framework, aligning directors and discipline leads around a shared target, stepping into focused artist reviews when fine tuning was needed, and carrying the direction through final implementation and the worldwide marketing key art developed with Ubisoft Montreal.'
+              ),
+              (
+                  'Direct on-floor management of the complete art team',
+                  'Cross-discipline art leadership through directors and leads, with targeted artist reviews when needed'
+              ),
+              (
+                  'My responsibility was not limited to environment supervision or final visual approval. I owned the artistic direction of the expansion as a whole: defining the identity of Ireland, translating that identity into executable direction for each department, directing the art team daily on the production floor, aligning priorities with production, working daily with Graphic Technical Director Philippe Trarieux “Bob” to translate the vision into the game engine, and protecting the direction through final delivery.',
+                  'My responsibility was not limited to environment supervision or final visual approval. I owned the artistic direction of the expansion as a whole: defining the identity of Ireland, translating that identity into executable direction for each department, aligning directors and discipline leads around a common visual target, resolving cross-discipline decisions with production and technical direction, stepping into direct artist reviews when fine tuning was needed, and protecting the direction through final delivery.'
+              ),
+              (
+                  'I converted the creative ambition into a shared visual system, then adapted the direction to the language, constraints and decisions of each discipline.',
+                  'I converted the creative ambition into a shared visual system, then worked with directors and discipline leads to translate that direction into clear decisions for each department.'
+              ),
+              (
+                  'The team I directed, and the partners who helped make the vision executable.',
+                  'Art direction through alignment, delegation and focused intervention.'
+              ),
+              (
+                  'The artists and leads listed below were under my direct artistic direction during production. I worked with them in person on the floor through daily reviews, visual feedback, problem-solving, milestone preparation and final validation. Alongside this direct leadership, Philippe Trarieux “Bob” was my daily technical partner, helping translate the artistic direction into robust in-engine implementation.',
+                  'My role was to set the visual target, keep every discipline aligned, and make the cross-department decisions that protected the identity of the expansion. Most day-to-day execution ran through directors and leads; I worked with them continuously on priorities, reviews, milestones and problem-solving, and stepped directly into artist reviews when a specific visual issue needed fine tuning. Philippe Trarieux “Bob” was my daily technical partner, helping translate the artistic direction into robust in-engine implementation.'
+              ),
+              (
+                  '<h3>Direct Art Team</h3>',
+                  '<h3>Art Team</h3>'
+              ),
+              (
+                  'Art direction was delivered through direct human leadership: working closely with artists, leads and directors, reviewing work in context, clarifying intent, making decisions, and helping teams solve visual problems without taking ownership away from them.',
+                  'Art direction was delivered as orchestration rather than micromanagement: setting a clear target, aligning directors and leads, reviewing work in context, making decisions across disciplines, and stepping into direct artist feedback when fine tuning or a difficult visual problem required it.'
+              ),
+              (
+                  'Final assets were created collaboratively. The credits below distinguish overall art direction, direct departmental leadership and production partnership.',
+                  'Final assets were created collaboratively. The credits below distinguish overall art direction, the contributing art disciplines and artists, and the core production and technical partnerships.'
+              ),
+          ]
+
+          for old, new in replacements:
+              if old not in text:
+                  raise RuntimeError(f'Expected text not found: {old[:120]}')
+              text = text.replace(old, new, 1)
+
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wrath-of-the-druids.html
+          git diff --cached --check
+          git commit -m "Refine Wrath art direction leadership framing"
+          git push
