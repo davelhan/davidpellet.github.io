@@ -1,0 +1,68 @@
+name: Refine Wrath cross-director collaboration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refine-wrath-cross-director-collaboration.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refine collaboration wording
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('wrath-of-the-druids.html')
+          text = p.read_text(encoding='utf-8')
+
+          replacements = [
+              (
+                  'Full visual leadership of the expansion at Ubisoft Bordeaux, setting the visual framework, aligning directors and discipline leads around a shared target, stepping into focused artist reviews when fine tuning was needed, and carrying the direction through final implementation and the worldwide marketing key art developed with Ubisoft Montreal.',
+                  'Full visual leadership of the expansion at Ubisoft Bordeaux, setting the visual framework, aligning Content and Narrative Direction with discipline leads around a shared target, stepping into focused artist reviews when fine tuning was needed, and carrying the direction through final implementation and the worldwide marketing key art developed with Ubisoft Montreal.'
+              ),
+              (
+                  'My responsibility was not limited to environment supervision or final visual approval. I owned the artistic direction of the expansion as a whole: defining the identity of Ireland, translating that identity into executable direction for each department, aligning directors and discipline leads around a common visual target, resolving cross-discipline decisions with production and technical direction, stepping into direct artist reviews when fine tuning was needed, and protecting the direction through final delivery.',
+                  'My responsibility was not limited to environment supervision or final visual approval. I owned the artistic direction of the expansion as a whole: defining the identity of Ireland, translating that identity into executable direction for each department, and protecting the direction through final delivery. A large part of that work was collaborative: I worked closely with the Content Director and Narrative Director on world-building and on the visual development of main and secondary narrative characters, aligned discipline leads around a common visual target, resolved cross-discipline decisions with production and technical direction, and stepped into direct artist reviews when fine tuning was needed.'
+              ),
+              (
+                  'I converted the creative ambition into a shared visual system, then worked with directors and discipline leads to translate that direction into clear decisions for each department.',
+                  'I converted the creative ambition into a shared visual system, then worked with the Content Director, Narrative Director and discipline leads to translate that direction into clear decisions for the world, characters and each art department.'
+              ),
+              (
+                  '<article class="card"><span class="num">03 · Narrative</span><h3>Characters & Factions</h3><p>Character identity, silhouette, cultural readability, iteration reviews, visual hierarchy and alignment between narrative intent and final design.</p></article>',
+                  '<article class="card"><span class="num">03 · Narrative</span><h3>Characters, Factions & Narrative World</h3><p>Visual development of main and secondary narrative characters, faction identity, silhouette, cultural readability and alignment between narrative intent, world-building and final design, in close collaboration with Content and Narrative Direction.</p></article>'
+              ),
+              (
+                  'My role was to set the visual target, keep every discipline aligned, and make the cross-department decisions that protected the identity of the expansion. Most day-to-day execution ran through directors and leads; I worked with them continuously on priorities, reviews, milestones and problem-solving, and stepped directly into artist reviews when a specific visual issue needed fine tuning. Philippe Trarieux “Bob” was my daily technical partner, helping translate the artistic direction into robust in-engine implementation.',
+                  'My role was to set the visual target, keep every discipline aligned, and make the cross-department decisions that protected the identity of the expansion. Day-to-day execution was carried by discipline leads and their teams, while I worked continuously with the Content Director, Narrative Director, production and technical direction to align world-building, narrative characters, priorities, milestones and cross-discipline decisions. I stepped directly into artist reviews when a specific visual issue needed fine tuning. Philippe Trarieux “Bob” was my daily technical partner, helping translate the artistic direction into robust in-engine implementation.'
+              ),
+              (
+                  'Art direction operated as orchestration: setting a clear visual target, aligning directors and leads, reviewing work in context, making decisions across disciplines, and stepping into direct artist feedback when fine tuning or a difficult visual problem required it.',
+                  'Art direction operated as orchestration: setting a clear visual target, aligning Content and Narrative Direction with discipline leads, reviewing work in context, making decisions across disciplines, and stepping into direct artist feedback when fine tuning or a difficult visual problem required it.'
+              ),
+          ]
+
+          for old, new in replacements:
+              if old not in text:
+                  raise RuntimeError(f'Expected text not found: {old[:140]}')
+              text = text.replace(old, new, 1)
+
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wrath-of-the-druids.html
+          git diff --cached --check
+          git commit -m "Refine Wrath cross-director collaboration"
+          git push
